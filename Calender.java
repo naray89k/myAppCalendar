@@ -107,7 +107,7 @@ public class Calender {
 	
 	void printFunction(long days){
         for(int i=0;i<days;i++){
-        System.out.print("     ");
+        System.out.print("   ");
         }
 	}
     
@@ -116,17 +116,17 @@ public class Calender {
 		 int dayNum[] = {0,1,2,3,4,5,6};
 		 String monthName[] = {"JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"};
 		 long days;
-		 String empty = "     ";
-		 String spac = "    ";
-		 String spac1="   ";
+		 String empty = "   ";
+		 String spac = "  ";
+		 String spac1=" ";
 		 int i=0,temp;
 		 long tot=totalDays();
 		 days=tot%7;
 		 System.out.println();
 		 if(validateDate()){
-			 System.out.println("       "+monthName[((int) month) - 1]+"    "+year);
+			 System.out.println("     "+monthName[((int) month) - 1]+"  "+year);
 			 for(String s:weekDays){
-				 System.out.print(s.substring(0,3)+"  ");
+				 System.out.print(s.substring(0,2)+" ");
 			 }
 				 System.out.println();
 				 if(year>=1753){
