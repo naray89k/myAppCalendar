@@ -197,47 +197,76 @@ public class Calender {
 	 public static void main(String[] args){
 		// TODO Auto-generated method stub
 		long month,year;
-		try{
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));	
-			int choice=0;
-			System.out.println("     CALENDER     ");
-			System.out.println("     ========     ");
-			System.out.println("   1. MONTHLY CALENDER ");
-			System.out.println("   2. YEARLY CALENDAR  ");
+		if (args == null)
+			System.out.println("args array is null");
+		else if (args.length == 2){
+			month=Integer.parseInt(args[0]);
+			year=Integer.parseInt(args[1]);
 			System.out.println();
-			System.out.print("   ENTER YOUR CHOICE :");
-			choice=Integer.parseInt(br.readLine());
-			switch(choice){
-			case 1:{
-				System.out.print("   ENTER MONTH :");
-				month =Integer.parseInt(br.readLine());
-				//System.out.println();
-				System.out.print("   ENTER YEAR :");
-				year =Integer.parseInt(br.readLine());
-				System.out.println();
-				Calender cal = new Calender(month,year);
-				cal.displayMonth();
-				break;
+			if(year<1752){
+				System.out.println("Calender date cannot be found before 1753");
+				System.exit(1);
 			}
-			case 2:{
-				System.out.print("   ENTER YEAR:");
-				year =Integer.parseInt(br.readLine());
+			Calender cal = new Calender(month,year);
+			cal.displayMonth();
+			System.out.println();
+		}
+		else if ( args.length == 1 ){
+			year=Integer.parseInt(args[0]);
+			if(year<1752){
+				System.out.println("Calender date cannot be found before 1753");
+				System.exit(1);
+			}
+			System.out.println();
+			for(int j=1;j<13;j++){
+				Calender cal = new Calender(j,year);
+				cal.displayMonth(); 
 				System.out.println();
-				for(int j=1;j<13;j++){
-					Calender cal = new Calender(j,year);
-					cal.displayMonth(); 
+			}
+		}
+		else if(args.length == 0){
+			try{
+				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));	
+				int choice=0;
+				System.out.println("     CALENDER     ");
+				System.out.println("     ========     ");
+				System.out.println("   1. MONTHLY CALENDER ");
+				System.out.println("   2. YEARLY CALENDAR  ");
+				System.out.println();
+				System.out.print("   ENTER YOUR CHOICE :");
+				choice=Integer.parseInt(br.readLine());
+				switch(choice){
+				case 1:{
+					System.out.print("   ENTER MONTH :");
+					month =Integer.parseInt(br.readLine());
+					//System.out.println();
+					System.out.print("   ENTER YEAR :");
+					year =Integer.parseInt(br.readLine());
+					System.out.println();
+					Calender cal = new Calender(month,year);
+					cal.displayMonth();
+					break;
 				}
-				break;
+				case 2:{
+					System.out.print("   ENTER YEAR:");
+					year =Integer.parseInt(br.readLine());
+					System.out.println();
+					for(int j=1;j<13;j++){
+						Calender cal = new Calender(j,year);
+						cal.displayMonth(); 
+					}
+					break;
+				}
+				default:
+					System.out.println("   ENTER CORRECT OPTIONS  ");
+				}
 			}
-			default:
-				System.out.println("   ENTER CORRECT OPTIONS  ");
+			catch (NumberFormatException ne){
+				System.out.println("   WRONG INPUTS");
 			}
-		}
-		catch (NumberFormatException ne){
-			System.out.println("   WRONG INPUTS");
-		}
-		catch(IOException ie){
-			System.out.println("   BAD ARGUMENTS");
+			catch(IOException ie){
+				System.out.println("   BAD ARGUMENTS");
+			}
 		}
 	} 
 
